@@ -5,8 +5,19 @@
 #   Geoffrey Grosenbach http://peepcode.com
 
 
-# RVM
-if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
+# RVM or rbenv
+function ruby_prompt(){
+  rv=$(rbenv version-name)
+  if (echo $rv &> /dev/null)
+  then
+    echo "%{$fg_bold[yellow]%}ruby $rv%{$reset_color%}"
+  elif $(which rvm &> /dev/null)
+  then
+    echo "%{$fg_bold[yellow]%}$(rvm tools identifier)%{$reset_color%}"
+  else
+    echo ""
+  fi
+}
 
 # Colors
 autoload -U colors
@@ -20,7 +31,7 @@ PROMPT='
 %~
 ${smiley}  %{$reset_color%}'
 
-RPROMPT='%{$fg[white]%} $(~/.rvm/bin/rvm-prompt)$(~/bin/git-cwd-info.rb)%{$reset_color%}'
+RPROMPT='%{$fg[white]%} $(ruby_prompt)$(~/bin/git-cwd-info.rb)%{$reset_color%}'
 
 # Show completion on first TAB
 setopt menucomplete
@@ -29,3 +40,5 @@ setopt menucomplete
 autoload compinit
 compinit
 
+# case-insensitive (all),partial-word and then substring completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
