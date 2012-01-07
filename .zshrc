@@ -75,8 +75,8 @@ function prompt_char {
 }
 
 # mkdir & cd to it
-function mcd() { 
-  mkdir -p "$1" && cd "$1"; 
+function mcd() {
+  mkdir -p "$1" && cd "$1";
 }
 
 #########
@@ -144,7 +144,7 @@ zstyle ':completion:*:kill:*'                 force-list always
 zstyle ':completion:*:*:kill:*:processes'     list-colors "=(#b) #([0-9]#)*=36=31"
 
 # enable color completion
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:default' list-colors "=(#b) #([0-9]#)*=$color[yellow]=$color[red]"
 
 # fuzzy matching of completions for when we mistype them
 zstyle ':completion:*' completer _complete _match _approximate
