@@ -4,6 +4,9 @@
 # AUTHOR:
 #   Geoffrey Grosenbach http://peepcode.com
 
+############
+# FUNCTIONS
+############
 
 # RVM or rbenv
 function ruby_prompt(){
@@ -65,10 +68,21 @@ function git_time_since_commit() {
   fi
 }
 
-# Colors
+function prompt_char {
+  git branch >/dev/null 2>/dev/null && echo '[±])' && return
+  hg root >/dev/null 2>/dev/null && echo '[☿])' && return
+  echo '[○] '
+}
+
+
+#########
+# COLORS
+#########
+
 autoload -U colors
 colors
 setopt prompt_subst
+
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[white]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%})"
 
@@ -84,26 +98,62 @@ ZSH_THEME_GIT_TIME_SHORT_COMMIT_MEDIUM="%{$fg[yellow]%}"
 ZSH_THEME_GIT_TIME_SINCE_COMMIT_LONG="%{$fg[red]%}"
 ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[cyan]%}"
 
-# Prompt
+#########
+# PROMPT
+#########
+
 local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
 
 PROMPT='
 %~
-$( git_time_since_commit ) ${smiley}  %{$reset_color%}'
+%{$fg[white]%}$(git_time_since_commit)%{$fg[white]%}$(prompt_char) > %{$reset_color%}'
 
 RPROMPT='%{$fg[white]%} $(ruby_prompt)$(~/bin/git-cwd-info.rb)%{$reset_color%}'
+
+#############
+# COMPLETION
+#############
 
 # Show completion on first TAB
 setopt menucomplete
 
-# Load completions for Ruby, Git, etc.
-autoload compinit
-compinit
+# load autocompletion
+autoload -U compinit && compinit
 
-# case-insensitive (all),partial-word and then substring completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# enable cache
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
 
-# aliases
+# ignore completion to commands we don't have
+zstyle ':completion:*:functions' ignored-patterns '_*'
+
+# format autocompletion style
+zstyle ':completion:*:descriptions' format "%{$fg_bold[green]%}%d%{$reset_color%}"
+zstyle ':completion:*:corrections' format "%{$fg_bold[yellow]%}%d%{$reset_color%}"
+zstyle ':completion:*:messages' format "%{$fg_bold[red]%}%d%{$reset_color%}"
+zstyle ':completion:*:warnings' format "%{$fg_bold[red]%}%d%{$reset_color%}"
+
+# zstyle show completion menu if 2 or more items to select
+zstyle ':completion:*'                        menu select=2
+
+# zstyle kill menu
+zstyle ':completion:*:*:kill:*'               menu yes select
+zstyle ':completion:*:kill:*'                 force-list always
+zstyle ':completion:*:*:kill:*:processes'     list-colors "=(#b) #([0-9]#)*=36=31"
+
+# enable color completion
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+# fuzzy matching of completions for when we mistype them
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+
+# number of errors allowed by _approximate increase with the length of what we have typed so far
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
+
+##########
+# ALIASES
+##########
 alias ls="ls -G"
 
 # Git aliases
