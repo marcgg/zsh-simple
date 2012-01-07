@@ -74,6 +74,10 @@ function prompt_char {
   echo '[○]'
 }
 
+# mkdir & cd to it
+function mcd() { 
+  mkdir -p "$1" && cd "$1"; 
+}
 
 #########
 # COLORS
