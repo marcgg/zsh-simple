@@ -10,10 +10,10 @@ function ruby_prompt(){
   rv=$(rbenv version-name)
   if (echo $rv &> /dev/null)
   then
-    echo "%{$fg_bold[yellow]%}ruby $rv%{$reset_color%}"
+    echo "%{$fg_bold[gray]%}ruby $rv%{$reset_color%}"
   elif $(which rvm &> /dev/null)
   then
-    echo "%{$fg_bold[yellow]%}$(rvm tools identifier)%{$reset_color%}"
+    echo "%{$fg_bold[gray]%}$(rvm tools identifier)%{$reset_color%}"
   else
     echo ""
   fi
