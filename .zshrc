@@ -156,6 +156,7 @@ zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX
 ##########
 # ALIASES
 ##########
+
 alias ls="ls -G"
 
 # Git aliases
@@ -163,3 +164,10 @@ alias gplod="git pull origin development"
 alias gplom="git pull origin master"
 alias gpsod="git push origin development"
 alias gpsom="git push origin master"
+
+#######
+# PATH
+#######
+
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
+
