@@ -102,8 +102,6 @@ ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[cyan]%}"
 # PROMPT
 #########
 
-local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
-
 PROMPT='
 %~
 %{$fg[white]%}$(git_time_since_commit)%{$fg[white]%}$(prompt_char) > %{$reset_color%}'
