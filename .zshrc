@@ -74,6 +74,9 @@ function prompt_char {
   echo '[○]'
 }
 
+# Current path color depending on last command exit status
+local current_path="%(?,%{$fg[gray]%}%~%{$reset_color%},%{$fg[red]%}%~%{$reset_color%})"
+
 # mkdir & cd to it
 function mcd() {
   mkdir -p "$1" && cd "$1";
@@ -107,7 +110,7 @@ ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[cyan]%}"
 #########
 
 PROMPT='
-%~
+${current_path}
 %{$fg[white]%}$(git_time_since_commit)%{$fg[white]%}$(prompt_char) > %{$reset_color%}'
 
 RPROMPT='%{$fg[white]%} $(ruby_prompt)$(~/bin/git-cwd-info.rb)%{$reset_color%}'
@@ -169,5 +172,5 @@ alias gpsom="git push origin master"
 # PATH
 #######
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/julien/bin:/Users/julien/.rbenv/bin
 
