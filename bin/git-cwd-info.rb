@@ -23,7 +23,7 @@ def in_git_repo
 end
 
 def git_parse_branch
-  @git_parse_branch ||= `git branch 2> /dev/null | grep '*' | sed -e 's/* \(.*\)/ (\1)/g'`.chomp
+  @git_parse_branch ||= `git-current-branch`.chomp
 end
 
 def git_head_commit_id
