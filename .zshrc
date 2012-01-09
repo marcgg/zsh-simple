@@ -170,6 +170,10 @@ alias gplom="git pull origin master"
 alias gpsod="git push origin development"
 alias gpsom="git push origin master"
 
+# Bundler
+alias be="bundle exec"
+alias bi="bundle install"
+
 #######
 # PATH
 #######
@@ -182,4 +186,7 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/jul
 
 # Emacs mode
 bindkey -e
+
+# RBenv
+eval "$(rbenv init -)"
 
