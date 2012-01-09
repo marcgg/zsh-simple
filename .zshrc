@@ -160,7 +160,9 @@ zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX
 # ALIASES
 ##########
 
-alias ls="ls -G"
+alias ls='ls -G'
+alias ll='ls -lG'
+alias duh='du -csh'
 
 # Git aliases
 alias gplod="git pull origin development"
