@@ -176,3 +176,10 @@ alias gpsom="git push origin master"
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/julien/bin:/Users/julien/.rbenv/bin
 
+#######
+# MISC
+#######
+
+# Emacs mode
+bindkey -e
+
