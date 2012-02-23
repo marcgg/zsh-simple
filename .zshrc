@@ -163,6 +163,7 @@ zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX
 alias ls='ls -G'
 alias ll='ls -lG'
 alias duh='du -csh'
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 
 # Git aliases
 alias gplod="git pull origin development"
