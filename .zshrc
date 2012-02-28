@@ -185,6 +185,11 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/jul
 # MISC
 #######
 
+# History
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.history
+
 # Emacs mode
 bindkey -e
 
