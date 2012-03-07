@@ -163,7 +163,7 @@ zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX
 alias ls='ls -G'
 alias ll='ls -lG'
 alias duh='du -csh'
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+alias vim='/usr/local/bin/vim'
 
 # Git aliases
 alias gplod="git pull origin development"
@@ -190,8 +190,17 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.history
 
+export EDITOR=/usr/local/bin/vim
+export SHELL=/usr/local/bin/zsh
+
+# Bundler
+export USE_BUNDLER=force
+
 # Emacs mode
 bindkey -e
+
+# Tmuxinator
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
 # RBenv
 eval "$(rbenv init -)"
