@@ -111,7 +111,7 @@ ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[cyan]%}"
 
 PROMPT='
 ${current_path}
-%{$fg[white]%}$(git_time_since_commit)%{$fg[white]%}$(prompt_char) > %{$reset_color%}'
+%{$fg[white]%}$(git_time_since_commit)%{$fg[white]%}$(prompt_char) ✪  %{$reset_color%}'
 
 RPROMPT='%{$fg[white]%} $(ruby_prompt)$(~/bin/git-cwd-info)%{$reset_color%}'
 
@@ -171,6 +171,7 @@ alias gplod="git pull origin development"
 alias gplom="git pull origin master"
 alias gpsod="git push origin development"
 alias gpsom="git push origin master"
+alias glog="git log -p -40 | vim - -R -c 'set foldmethod=syntax'"
 
 # Bundler
 alias be="bundle exec"
