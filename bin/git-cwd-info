@@ -28,5 +28,13 @@ if [[ $GIT_REPO_PATH != '' && $GIT_REPO_PATH != '~' && $GIT_REPO_PATH != "$HOME/
     GIT_DIRTY=" %{[90m%}✗%{[0m%}"
   fi
 
-  echo " %{[90m%}$GIT_BRANCH %{[37m%}$GIT_COMMIT_ID%{[0m%}$GIT_MODE$GIT_DIRTY"
+  if [ $GIT_BRANCH = "master" ]; then
+    echo "%{[31m%}$GIT_BRANCH$GIT_MODE$GIT_DIRTY"
+  elif [ $GIT_BRANCH = "development" ]; then
+     echo "%{[32m%}$GIT_BRANCH$GIT_MODE$GIT_DIRTY"
+  else
+    echo "%{[33m%}$GIT_BRANCH$GIT_MODE$GIT_DIRTY"
+  fi
+
 fi
+
